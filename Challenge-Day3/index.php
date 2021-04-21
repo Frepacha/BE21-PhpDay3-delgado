@@ -10,23 +10,37 @@ $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 <html>
 
 <head>
-    <title> connecting to DB Restaurant </title>
+    <title> DB Restaurant </title>
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
 
 <body>
-    <a href="create.php">create new record </a><br><br> <!-- we will create this file later -->
+<?php include 'navbar.php'?>
 
+<!--     <a href="create.php">create new record </a><br><br>  -->
+    <div class="container d-flex flex-wrap p-2">
     <?php
-    $i = 0;
-    while ($i < count($rows)) {
-        echo "<p>" .$rows[$i][ 'image']." ".$rows[$i]['name' ]." ".$rows[$i]['price' ]." ".$rows[$i]['description' ]. " <a href='delete.php?id=" .$rows[$i]['id']."'>delete</a></p>" ;
-        $i++;
-    }
 
-    // foreach ($rows as $row) {
-    //     echo "<p>" .$row['first_name']." ".$row['last_name' ]."</p>";
-    // }
+    foreach ($rows as $row) {
+        echo "<div class='card m-2 border' style='width: 18rem;'>
+                <img src='" . $row['image'] . "' class='card-img-top'>
+                <div class='card-body d-flex flex-column justify-content-between'>
+                    <h5 class='card-title'>" . $row['name'] . "</h5>
+                    <p class='card-text'>" . $row['description'] . "</p>
+                    <p class='card-text'>€ " . $row['price']."</p>
+                    <a href='delete.php?dishID=" . $row['dishID'] . "' class='btn btn-danger'>Del-eat it</a>
+                </div>
+            </div>";
+    }
+    // href=...?dishID => dishID must equal $_GET['dishID']
+
     ?>
+
+
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 
 </html>
