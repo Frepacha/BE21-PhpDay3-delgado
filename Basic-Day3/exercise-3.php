@@ -9,30 +9,39 @@
 </head>
 
 <body>
-    <!-- Create a function that will have a parameter. The argument given to that parameter should be an array. The function should return the highest value from the array. Try to create an array with at least 10 numbers created randomly. You may want to take a look at the rand() function from PHP. -->
-
     <?php
-    $array = array(1, 2, 3, 4, 5);
 
-    function randarray($array)
-    {
-        echo "$array[0], $array[1]";
+    $array = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    for ($a = 0; $a < 1000000; $a++) {
+        $n = rand(0, 1000000);
+        if ($n <= 10) {
+            $array[$n]++;
+        }
     }
-    //srand(randarray($array));
+    print_r($array);
+    echo "<br>";
+    echo ("The max number is:".max($array));
+    echo "<br>";
 
     ?>
 
+
     <?php
-
-    $r = array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    for ($i = 0; $i < 1000000; $i++) {
-        $n = rand(0, 1000000);
-        if ($n <= 10) {
-            $r[$n]++;
-        }
+    // Exercise 3
+    // Create a function that will have a parameter. The argument given to that parameter should be an array. The function should return the highest value from the array. Try to create an array with at least 10 numbers created randomly. You may want to take a look at the rand() function from PHP. 
+    $numbArray = array();
+    for ($i = 0; $i <= 10; $i++) {
+        $randNumb = mt_rand(1, 100);
+        array_push($GLOBALS["numbArray"], $randNumb);
     }
-    print_r($r);
-
+    var_dump($numbArray);
+    echo "<br><br>";
+    function printMax($a)
+    {
+        echo ("The max number is:".max($a)."<br>");
+        echo ("The min number is:".min($a)."<br>");
+    }
+    printMax($numbArray);
     ?>
 
 </body>
